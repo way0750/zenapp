@@ -1,10 +1,13 @@
 <h1 class = 'someTitle'>NASA Picture</h1>
-<div class="calendar">{{{cal}}}</div>
+<div class="calendar">{{{calendar}}}</div>
 
 <div class="thumbNailContainer">
   <img class="thumbNail"/>
   <img src="{{assetURL 'loading.gif'}}" class="loadingGif">
 </div>
+
+<div class="explanation">{{explanation}}</div>
+
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" aria-hidden="true">×</button>

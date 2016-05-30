@@ -1,9 +1,10 @@
 (function() {
   var Calendar = require('calendar');
-  var cal = new Calendar(this.$);
+  var calendar = new Calendar(this.$);
   return {
     events: {
-      'app.activated': "this.initalGet",
+      'app.activated': "this.drawMainView",
+      'pane.activated': "this.navBarReady",
       'getNASAPic.done': "this.updateMainAppView",
       'getNASAPic.fail': 'this.showError',
       'click .calendarDate': 'this.pickDate',
@@ -11,9 +12,14 @@
       'click .thumbNail': 'this.toggleModal'
     },
 
-    calendar: cal,
+    //this is need for pane get activated because http request might come back before nav bar even is ready
+    navBarReady: function () {
+      this.updateMainAppView(this.dataForNavBarReady);
+    },
 
-    calendarHTML: cal.drawCalendarView().prop('outerHTML'),
+    calendar: calendar,
+
+    calendarHTML: calendar.drawCalendarView().prop('outerHTML'),
 
     toggleModal: function () {
       this.$('#myModal').modal();
@@ -53,16 +59,24 @@
     },
 
     updateMainAppView: function (data) {
+      //saving this in case the nav bar has yet been activated
+      this.dataForNavBarReady = data;
+      // console.log('server data:', data);
       this.$('.thumbNail').attr({src: data.url});
       this.$('.largerNASAPic').attr({src: data.url});
       this.$('.myModalLabel').text(data.title);
+      this.$('.explanation').text(data.explanation);
       this.playLoadingGif(false);
     },
 
     showError: function (data) {
-      // console.log('got this as failure data: ', data);
-      // data.cal = this.calendarHTML;
-      // this.switchTo('showError', data);
+      var explanation = JSON.parse(data.responseText).msg;
+      var obj = {
+        explanation: explanation,
+        url: this.assetURL("error.jpeg"),
+        title: 'nothing found, pick another date'
+      };
+      this.updateMainAppView(obj);
     },
 
     requests: {
@@ -85,8 +99,8 @@
       }
     },
 
-    initalGet: function () {
-      this.switchTo('mainAppView', {cal: this.calendarHTML});
+    drawMainView: function () {
+      this.switchTo('mainAppView', {calendar: this.calendarHTML});
       this.ajax('getNASAPic', {});
     },
     
