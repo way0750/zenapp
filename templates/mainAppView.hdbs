@@ -16,6 +16,7 @@
     <h3 class="myModalLabel"></h3>
   </div>
   <div class="modal-body">
+    <iframe class="videoPlayer"></iframe>
     <img class="largerNASAPic">
   </div>
 </div>

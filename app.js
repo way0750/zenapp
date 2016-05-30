@@ -58,18 +58,39 @@
       this.ajax('getNASAPic', {date: dateEle.data("fulldate")});
     },
 
+    markSelectedDateOnCal: function (fullDate) {
+      if (this.curSelectedDate) {
+        this.curSelectedDate.removeClass('selectedDate');
+      }
+      this.curSelectedDate = this.$('.calendar [data-fulldate='+fullDate+']');
+      this.curSelectedDate.addClass('selectedDate');
+    },
+
     updateMainAppView: function (data) {
       //saving this in case the nav bar has yet been activated
       this.dataForNavBarReady = data;
       // console.log('server data:', data.date);
-      if (this.curSelectedDate) {
-        this.curSelectedDate.removeClass('selectedDate');
+      this.markSelectedDateOnCal(data.date);
+
+      var thumbNail = this.$('.thumbNail');
+      var largerNASAPic = this.$('.largerNASAPic');
+      var videoPlayer = this.$('.videoPlayer');
+      var thisIsAYoutubeVideo = /www\.youtube\.com\/embed/.test(data.url);
+
+      if (thisIsAYoutubeVideo) {
+        //http://img.youtube.com/vi/1vqlZiUYwKc/0.jpg
+        var youtubeVideoID = data.url.match(/[^\/]+(?=\?)/)[0];
+        thumbNail.attr({src: "http://img.youtube.com/vi/" + youtubeVideoID + "/0.jpg"});
+        videoPlayer.attr({src: data.url});
+        largerNASAPic.toggle(false);
+        videoPlayer.toggle(true);
+      } else {
+        thumbNail.attr({src: data.url});
+        largerNASAPic.attr({src: data.url});
+        largerNASAPic.toggle(true);
+        videoPlayer.toggle(false);
       }
-      this.curSelectedDate = this.$('.calendar [data-fulldate='+data.date+']');
-      this.curSelectedDate.addClass('selectedDate');
-      
-      this.$('.thumbNail').attr({src: data.url});
-      this.$('.largerNASAPic').attr({src: data.url});
+
       this.$('.myModalLabel').text(data.title);
       this.$('.explanation').text(data.explanation);
       this.playLoadingGif(false);
