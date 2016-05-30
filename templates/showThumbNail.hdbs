@@ -1,9 +1,9 @@
 <h1 class = 'someTitle'>NASA picture of the day</h1>
 <div class="calendar">{{{cal}}}</div>
-<img src={{url}} class="thumbNail" data-toggle="modal" data-target="#myModal"/>
+<img src={{url}} class="thumbNail" />
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
-    <button type="button" class="close" data-toggle="modal" data-target="#myModal" aria-hidden="true">×</button>
+    <button type="button" class="close" aria-hidden="true">×</button>
     <h3 id="myModalLabel">{{title}}</h3>
   </div>
   <div class="modal-body">

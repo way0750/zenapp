@@ -7,9 +7,11 @@
       'getNASAPic.done': "this.showThumbNail",
       'getNASAPic.fail': 'this.showError',
       'click .calendarDate': 'this.pickDate',
-      'click .calendarChangeMonth' : 'this.changeMonth'
+      'click .calendarChangeMonth' : 'this.changeMonth',
+      'click .thumbNail': function () {
+        this.$('#myModal').modal();
+      }
     },
-
     calendar: cal,
 
     calendarHTML: cal.drawCalendarView().prop('outerHTML'),
