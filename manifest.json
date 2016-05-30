@@ -2,8 +2,7 @@
   "name": "ZenApp",
   "author": {
     "name": "way",
-    "email": "way0750huang@gmail.com",
-    "url": "http://testing873.zendesk.com"
+    "email": "way0750huang@gmail.com"
   },
   "defaultLocale": "en",
   "private": true,

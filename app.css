@@ -26,7 +26,8 @@
 .thumbNailContainer *{
   position: absolute;
   width: 150px;
-  height: 150px;
+  max-height: 150px;
+  height: auto;
   top: 0px;
   left: 0px;
 }
@@ -45,6 +46,8 @@
 
 
 
+
+/*modal related*/
 #myModal {
   top: 40%;
   left: 0px;
@@ -60,6 +63,7 @@
 .modal-body {
   position: relative;
   height: 100%;
+  background-color: black;
 }
 
 #myModal .modal-body{
