@@ -4,9 +4,9 @@
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-toggle="modal" data-target="#myModal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">nothing to see here</h3>
+    <h3 id="myModalLabel">{{title}}</h3>
   </div>
   <div class="modal-body">
-    <img src="{{url}}">
+    <img src="{{url}}" class="largerNASAPic">
   </div>
 </div>

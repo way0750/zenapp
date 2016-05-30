@@ -1,6 +1,6 @@
 (function() {
   var Calendar = require('calendar');
-  var cal = new Calendar(this.$, '2016/01/29');
+  var cal = new Calendar(this.$);
   return {
     events: {
       'app.activated': "this.getData",
@@ -9,19 +9,25 @@
       'click .calendarDate': 'this.pickDate'
     },
 
+    calendar: cal,
+
+    calendarHTML: cal.drawCalendarView().prop('outerHTML'),
+
     pickDate: function (event) {
       var value = this.$(event.target).data("fulldate");
       this.ajax('getNASAPic', {date: value});
     },
 
     showThumbNail: function (data) {
-      data.cal = cal.drawCalendarView().prop('outerHTML');
+      console.log('got this as successful data: ', data);
+      data.cal = this.calendarHTML;
       this.switchTo('showThumbNail', data);
     },
 
     showError: function (data) {
-      console.log(JSON.stringify(data, null, '  '));
-      this.switchTo('showError', {});
+      console.log('got this as failure data: ', data);
+      data.cal = this.calendarHTML;
+      this.switchTo('showError', data);
     },
 
     requests: {
@@ -35,7 +41,7 @@
           });
         }
         var url = baseURL + apiKey + params;
-        console.log(url);
+        console.log('got requested right here at:\n\n',url);
         return {
           url: url,
           type: 'GET',

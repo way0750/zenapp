@@ -9,5 +9,27 @@
 }
 
 .modal {
-  display: none;
+
+}
+
+#myModal {
+  top: 40%;
+  left: 0px;
+  right: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  position: fixed;
+  width: 80%;
+  height: 80%;
+  overflow: hidden;
+}
+
+#myModal .modal-body{
+  max-height: 100%;
+  padding: 0px;
+}
+
+.largerNASAPic {
+  margin: auto auto;
+  display: block;
 }
