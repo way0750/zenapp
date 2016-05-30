@@ -1,0 +1,11 @@
+<h1 class = 'someTitle'>you are in view 001 , do you see the thumb nail?:</h1>
+<img src={{url}} class="thumbNail" data-toggle="modal" data-target="#myModal"/>
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-toggle="modal" data-target="#myModal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">nothing to see here</h3>
+  </div>
+  <div class="modal-body">
+    <img src="{{url}}">
+  </div>
+</div>

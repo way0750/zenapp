@@ -1,13 +1,13 @@
 {
-  "name": "testing",
+  "name": "ZenApp",
   "author": {
     "name": "way",
     "email": "way0750huang@gmail.com",
-    "url": "https://testing873.zendesk.com"
+    "url": "http://testing873.zendesk.com"
   },
   "defaultLocale": "en",
   "private": true,
-  "location":  ["ticket_sidebar"],
+  "location":  ["nav_bar", "ticket_sidebar"],
   "version": "1.0",
   "frameworkVersion": "1.0"
 }

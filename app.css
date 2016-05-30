@@ -1,0 +1,13 @@
+.someTitle {
+  margin-top: 42px;
+}
+
+.thumbNail {
+  width: 150px;
+  height: 150px;
+  transition: all 100ms linear;
+}
+
+.modal {
+  display: none;
+}
