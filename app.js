@@ -3,20 +3,19 @@
   var cal = new Calendar(this.$, '2016/01/29');
   return {
     events: {
-      // 'app.activated': "this.getData",
-      'app.activated': "this.drawCalendar",
+      'app.activated': "this.getData",
       'getNASAPic.done': "this.showThumbNail",
       'getNASAPic.fail': 'this.showError',
+      'click .calendarDate': 'this.pickDate'
     },
 
-    drawCalendar: function () {
-      var header = this.$('#header');
-      var $cal = cal.drawCalendarView();
-      header.append($cal);
-      console.log($cal);
+    pickDate: function (event) {
+      var value = this.$(event.target).data("fulldate");
+      this.ajax('getNASAPic', {date: value});
     },
 
     showThumbNail: function (data) {
+      data.cal = cal.drawCalendarView().prop('outerHTML');
       this.switchTo('showThumbNail', data);
     },
 
@@ -36,6 +35,7 @@
           });
         }
         var url = baseURL + apiKey + params;
+        console.log(url);
         return {
           url: url,
           type: 'GET',
@@ -44,11 +44,10 @@
       }
     },
 
-    getData: function (option) {
+    getData: function () {
       this.ajax('getNASAPic', {});
     },
     
-
   };
 
 }());

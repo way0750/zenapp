@@ -1,7 +1,7 @@
-<header id="header">
+<header class="appHeader">
   <span class="logo"></span>
   <h3>{{setting "name"}}</h3>
-  <h1>things right here isn't supposed to change with state</h1>
+  <div class="calendar">{{{cal}}}</div>
 </header>
 <section data-main></section>
 <footer>

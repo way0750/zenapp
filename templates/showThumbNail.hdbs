@@ -1,4 +1,5 @@
 <h1 class = 'someTitle'>you are in view 001 , do you see the thumb nail?:</h1>
+<div class="calendar">{{{cal}}}</div>
 <img src={{url}} class="thumbNail" data-toggle="modal" data-target="#myModal"/>
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
