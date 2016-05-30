@@ -33,3 +33,34 @@
   margin: auto auto;
   display: block;
 }
+
+
+
+/*calendar related*/
+.calendar{
+  width: 17.5em;
+  text-align: center;
+  height: 16em;
+}
+.calendar td {
+  width: 2.5em;
+
+  outline: 1px aqua grey;
+}
+
+.calendar .weekDayLabel {
+  color: white;
+  background-color: grey;
+}
+
+.calendarChangeMonth{
+  width: 20%;
+}
+
+.calendarCurrentMonth{
+  width: 60%;
+  display: inline-block;
+  /*text-align: center;*/
+  margin-left: auto;
+  margin-right: auto;
+}

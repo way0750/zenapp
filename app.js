@@ -6,12 +6,31 @@
       'app.activated': "this.getData",
       'getNASAPic.done': "this.showThumbNail",
       'getNASAPic.fail': 'this.showError',
-      'click .calendarDate': 'this.pickDate'
+      'click .calendarDate': 'this.pickDate',
+      'click .calendarChangeMonth' : 'this.changeMonth'
     },
 
     calendar: cal,
 
     calendarHTML: cal.drawCalendarView().prop('outerHTML'),
+
+    changeMonth: function (event) {
+      //check and see if should change to next or previous
+      //make sure to change calndar and calendarHTML too
+      var $ele = this.$(event.target);
+      if ($ele.hasClass('previousMonth')) {
+        this.calendar.newMonth(-1);
+      } else if ($ele.hasClass('nextMonth')) {
+        this.calendar.newMonth(1);
+      }
+
+      this.calendarHTML = this.calendar.drawCalendarView().prop('outerHTML');
+      //how to update the current cal?
+      var currentCalendar = this.$('.calendar');
+      currentCalendar.empty();
+      currentCalendar.html(this.calendarHTML);
+
+    },
 
     pickDate: function (event) {
       var value = this.$(event.target).data("fulldate");
@@ -19,8 +38,9 @@
     },
 
     showThumbNail: function (data) {
-      console.log('got this as successful data: ', data);
+      // console.log('got this as successful data: ', data);
       data.cal = this.calendarHTML;
+      console.log('should really change picture now', data);
       this.switchTo('showThumbNail', data);
     },
 

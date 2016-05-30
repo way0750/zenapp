@@ -1,7 +1,6 @@
 <header class="appHeader">
   <span class="logo"></span>
   <h3>{{setting "name"}}</h3>
-  <div class="calendar">{{{cal}}}</div>
 </header>
 <section data-main></section>
 <footer>
