@@ -1,15 +1,24 @@
-.someTitle {
+/*.someTitle {
   margin-top: 42px;
-}
+}*/
 
-.thumbNail {
+.thumbNailContainer {
+  position: relative;
   width: 150px;
   height: 150px;
   transition: all 100ms linear;
 }
 
-.modal {
+.thumbNailContainer img{
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: 0px;
+  left: 0px;
+}
 
+.hideLoadingGif {
+  display: none;
 }
 
 #myModal {

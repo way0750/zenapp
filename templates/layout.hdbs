@@ -7,5 +7,4 @@
   <a href="mailto:{{author.email}}">
     {{author.name}}
   </a>
-    <h1>here too</h1>
 </footer>

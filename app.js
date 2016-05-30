@@ -3,22 +3,35 @@
   var cal = new Calendar(this.$);
   return {
     events: {
-      'app.activated': "this.getData",
-      'getNASAPic.done': "this.showThumbNail",
+      'app.activated': "this.initalGet",
+      'getNASAPic.done': "this.updateMainAppView",
       'getNASAPic.fail': 'this.showError',
       'click .calendarDate': 'this.pickDate',
       'click .calendarChangeMonth' : 'this.changeMonth',
-      'click .thumbNail': function () {
-        this.$('#myModal').modal();
-      }
+      'click .thumbNail': 'this.toggleModal'
     },
+
     calendar: cal,
 
     calendarHTML: cal.drawCalendarView().prop('outerHTML'),
 
+    toggleModal: function () {
+      this.$('#myModal').modal();
+    },
+
+    playLoadingGif: function (play) {
+      //activate the hidden loading gif
+      var loadingGif = this.$('.loadingGif');
+      if (play) {
+        loadingGif.removeClass('hideLoadingGif');
+      } else {
+        loadingGif.addClass('hideLoadingGif');
+      }
+    },
+
     changeMonth: function (event) {
       //check and see if should change to next or previous
-      //make sure to change calndar and calendarHTML too
+      //make sure to change calendar and calendarHTML too
       var $ele = this.$(event.target);
       if ($ele.hasClass('previousMonth')) {
         this.calendar.newMonth(-1);
@@ -27,7 +40,7 @@
       }
 
       this.calendarHTML = this.calendar.drawCalendarView().prop('outerHTML');
-      //how to update the current cal?
+
       var currentCalendar = this.$('.calendar');
       currentCalendar.empty();
       currentCalendar.html(this.calendarHTML);
@@ -35,25 +48,26 @@
     },
 
     pickDate: function (event) {
-      var value = this.$(event.target).data("fulldate");
-      this.ajax('getNASAPic', {date: value});
+      var picOnThisDate = this.$(event.target).data("fulldate");
+      this.ajax('getNASAPic', {date: picOnThisDate});
     },
 
-    showThumbNail: function (data) {
-      // console.log('got this as successful data: ', data);
-      data.cal = this.calendarHTML;
-      console.log('should really change picture now', data);
-      this.switchTo('showThumbNail', data);
+    updateMainAppView: function (data) {
+      this.$('.thumbNail').attr({src: data.url});
+      this.$('.largerNASAPic').attr({src: data.url});
+      this.$('.myModalLabel').text(data.title);
+      this.playLoadingGif(false);
     },
 
     showError: function (data) {
-      console.log('got this as failure data: ', data);
-      data.cal = this.calendarHTML;
-      this.switchTo('showError', data);
+      // console.log('got this as failure data: ', data);
+      // data.cal = this.calendarHTML;
+      // this.switchTo('showError', data);
     },
 
     requests: {
       getNASAPic: function (option) {
+        this.playLoadingGif(true);
         var baseURL = 'https://api.nasa.gov/planetary/apod?';
         var apiKey = "api_key=8tKXFJvk4bzxmNizdRyj62p8ouqTEIo4LCoJO7FP";
         var params = "";
@@ -63,7 +77,6 @@
           });
         }
         var url = baseURL + apiKey + params;
-        console.log('got requested right here at:\n\n',url);
         return {
           url: url,
           type: 'GET',
@@ -72,7 +85,8 @@
       }
     },
 
-    getData: function () {
+    initalGet: function () {
+      this.switchTo('mainAppView', {cal: this.calendarHTML});
       this.ajax('getNASAPic', {});
     },
     
