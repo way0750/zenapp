@@ -54,14 +54,20 @@
     },
 
     pickDate: function (event) {
-      var picOnThisDate = this.$(event.target).data("fulldate");
-      this.ajax('getNASAPic', {date: picOnThisDate});
+      var dateEle = this.$(event.target);
+      this.ajax('getNASAPic', {date: dateEle.data("fulldate")});
     },
 
     updateMainAppView: function (data) {
       //saving this in case the nav bar has yet been activated
       this.dataForNavBarReady = data;
-      // console.log('server data:', data);
+      // console.log('server data:', data.date);
+      if (this.curSelectedDate) {
+        this.curSelectedDate.removeClass('selectedDate');
+      }
+      this.curSelectedDate = this.$('.calendar [data-fulldate='+data.date+']');
+      this.curSelectedDate.addClass('selectedDate');
+      
       this.$('.thumbNail').attr({src: data.url});
       this.$('.largerNASAPic').attr({src: data.url});
       this.$('.myModalLabel').text(data.title);

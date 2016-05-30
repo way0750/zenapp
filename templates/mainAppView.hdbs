@@ -1,17 +1,19 @@
-<h1 class = 'someTitle'>NASA Picture</h1>
+<h1 class = 'appTitle'>NASA Picture</h1>
 <div class="calendar">{{{calendar}}}</div>
+
+<h4 class="myModalLabel thumbNailTitle"></h4>
 
 <div class="thumbNailContainer">
   <img class="thumbNail"/>
   <img src="{{assetURL 'loading.gif'}}" class="loadingGif">
 </div>
 
-<div class="explanation">{{explanation}}</div>
+<div class="explanation"></div>
 
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" aria-hidden="true">×</button>
-    <h3 class="myModalLabel">{{title}}</h3>
+    <h3 class="myModalLabel"></h3>
   </div>
   <div class="modal-body">
     <img class="largerNASAPic">

@@ -1,10 +1,24 @@
-/*.someTitle {
-  margin-top: 42px;
-}*/
+.appTitle {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.thumbNailTitle {
+  max-width: 15em;
+  margin-bottom: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
 
 .thumbNailContainer {
   position: relative;
   width: 150px;
+  
+  max-width: 20em;
+  margin-left: auto;
+  margin-right: auto;
+
   height: 150px;
   transition: all 100ms linear;
 }
@@ -20,6 +34,16 @@
 .hideLoadingGif {
   display: none;
 }
+
+.explanation {
+  max-width: 20em;
+  margin-top: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+
 
 #myModal {
   top: 40%;
@@ -48,6 +72,9 @@
 /*calendar related*/
 .calendar{
   width: 17.5em;
+  max-width: 20em;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
   height: 16em;
 }
@@ -72,4 +99,8 @@
   /*text-align: center;*/
   margin-left: auto;
   margin-right: auto;
+}
+
+.selectedDate{
+  background-color: aqua;
 }
