@@ -110,7 +110,7 @@
       getNASAPic: function (option) {
         this.playLoadingGif(true);
         var baseURL = 'https://api.nasa.gov/planetary/apod?';
-        var apiKey = "api_key=8tKXFJvk4bzxmNizdRyj62p8ouqTEIo4LCoJO7FP";
+        var apiKey = "";
         var params = "";
         if (option) {
           Object.keys(option).forEach(function(key) {
